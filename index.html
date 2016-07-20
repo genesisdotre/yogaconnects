@@ -1,0 +1,97 @@
+<html>
+  <head>
+    <style>
+      body{
+        margin: 0;
+      }
+      canvas{
+        width: 100%;
+        height: 100%
+      }
+
+      .thumbnail {
+        width: 33.3333333%;
+        display: block;
+        float: left;
+      }
+
+      @media (max-width: 600px) {
+        .thumbnail {
+          width: 50%;
+        }
+      }
+
+      .thumbnail img {
+        width: 100%;
+      }
+
+      .back {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        color: white;
+        text-decoration: none;
+        background-color: rgba(200,200,200,0.7);
+        padding: 5px 10px;
+        font-size: 0.8em;
+        font-family: sans-serif;
+      }
+
+    </style>
+  </head>
+  <body  ng-app="app">
+    
+    <div ng-view></div>
+
+  </body>
+
+  <script src="angular.js"></script>
+  <script src="angular-route.js"></script>
+  <script src="three.min.js"></script>
+  
+  <script type="text/javascript">
+    var app = angular.module("app", ["ngRoute"]);
+
+    app.config(function ($routeProvider, $locationProvider) {
+      $routeProvider
+        .when('/', {
+          templateUrl: 'list.html',
+          controller: 'ListCtrl',
+        })
+        .when('/:img', {
+          templateUrl: 'detail.html',
+          controller: 'DetailCtrl',
+        })
+        .otherwise({
+          redirectTo: '/'
+        });
+    });
+
+    app.controller("ListCtrl", function($scope) {
+
+      $scope.files = [
+        "R0010703_ok",
+        "R0010710_ok",
+        "R0010712_ok",
+        "R0010713_ok",
+        "R0010720_ok",
+        "R0010728_ok",
+        "R0010729_ok",
+        "R0010731_ok",
+        "R0010733_ok",
+        "R0010735_ok",
+        "R0010738_ok",
+        "R0010739_ok",
+        "R0010742_ok",
+        "_ok"
+      ];
+
+    });
+
+  </script>
+  <script src="DetailCtrl.js"></script>
+  <!-- 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r69/three.min.js"></script> 
+  -->
+
+</html>
